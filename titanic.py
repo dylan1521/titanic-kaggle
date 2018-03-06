@@ -206,7 +206,7 @@ Total_Data.fillna('NAN',inplace=True)#按照之前特征模型时的方法填充
 # print Total_Data.info()
 
 
-#进行特征工程
+
 #Cabin 根据有没有cabin数据分为两类
 def hava_cabin(data):
 	if data=='NAN':
@@ -252,14 +252,14 @@ def change_fare(data):
 	else:
 		return 3
 Total_Data.Fare = Total_Data.Fare.apply(lambda x:change_fare(x))
-#对连续性数据进行scaling处理，加速模型收敛
+#对连续性数据进行scaling处理
 # scaler = pp.StandardScaler()
 # age_scale_param = scaler.fit(Total_Data['Age'].reshape(-1, 1))
 # Total_Data['Age'] = scaler.fit_transform(Total_Data['Age'].reshape(-1, 1), age_scale_param)
 # fare_scale_param = scaler.fit(Total_Data['Fare'].reshape(-1, 1))
 # Total_Data['Fare'] = scaler.fit_transform(Total_Data['Fare'].reshape(-1, 1), fare_scale_param)
 
-#将其他离散的数据转化为onehot数据，这样可以实现升维的效果,以便使用后续的svm等分类
+#将其他离散的数据转化为onehot数据
 dummies_Cabin = pd.get_dummies(Total_Data['Cabin'], prefix= 'Cabin')
 dummies_Embarked = pd.get_dummies(Total_Data['Embarked'], prefix= 'Embarked')
 dummies_Sex = pd.get_dummies(Total_Data['Sex'], prefix= 'Sex')
